@@ -1,9 +1,18 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
-import store from './store'
+import router from './router/index'
+import store from './store/index'
+
+import Element from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+import './styles/index.less'
+
+import './icons'
 
 Vue.config.productionTip = false
+Vue.use(Element, {
+  size: 'medium'
+})
 
 new Vue({
   router,

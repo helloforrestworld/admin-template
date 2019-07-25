@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { asyncRoutes } from '@/router'
 
 Vue.use(Vuex)
 
@@ -9,6 +10,11 @@ export default new Vuex.Store({
   },
   mutations: {
 
+  },
+  getters: {
+    asyncRoutes() {
+      return asyncRoutes
+    }
   },
   actions: {
 
