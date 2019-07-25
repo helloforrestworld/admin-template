@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import layout from '@/layout/index.vue'
 
 import nestedRouter from './modules/nested'
+import NProgress from 'nprogress'
 
 Vue.use(Router)
 
@@ -92,5 +93,15 @@ export function resetRouter() {
   const newRouter = createRouter()
   router.matcher = newRouter.matcher
 }
+
+router.beforeEach((to, from, next) => {
+  NProgress.start()
+  next()
+})
+
+router.afterEach((to, from, next) => {
+  NProgress.done()
+  next()
+})
 
 export default router

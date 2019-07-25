@@ -3,8 +3,7 @@
     <template v-if="!item.children || item.children.length === 0">
       <router-link :to="basicPath">
         <el-menu-item :index="basicPath">
-          <svg-icon v-if="item.meta && item.meta.icon" :icon="item.meta.icon"></svg-icon>
-          {{item.meta.title}}
+          <TextItem :item="item"></TextItem>
         </el-menu-item>
       </router-link>
     </template>
@@ -12,16 +11,14 @@
     <template v-else-if="item.children.length === 1 && !item.alwaysShowRoot">
       <router-link :to="resolvePath(item.children[0].path)">
         <el-menu-item :index="resolvePath(item.children[0].path)">
-          <svg-icon v-if="item.children[0].meta && item.children[0].meta.icon" :icon="item.children[0].meta.icon"></svg-icon>
-          {{item.children[0].meta.title}}
+          <TextItem :item="item.children[0]"></TextItem>
         </el-menu-item>
       </router-link>
     </template>
 
     <el-submenu v-else :index="resolvePath(item.path)">
       <template slot="title">
-        <svg-icon v-if="item.meta && item.meta.icon" :icon="item.meta.icon"></svg-icon>
-        {{item.meta.title}}
+        <TextItem :item="item"></TextItem>
       </template>
       <sidebar-item
         v-for="child in item.children"
@@ -36,10 +33,11 @@
 
 <script>
 import path from 'path'
+import TextItem from './TextItem'
 
 export default {
   name: 'SidebarItem',
-  components: {},
+  components: { TextItem },
   props: {
     item: {
       type: Object,
@@ -59,14 +57,7 @@ export default {
   },
   methods: {
     resolvePath(routePath) {
-      console.log('basicPath: ', this.basicPath)
-      console.log('routePath: ', routePath)
-      console.log('result: ', path.resolve(this.basicPath, routePath))
-      console.log('-----------------------------')
       return path.resolve(this.basicPath, routePath)
-    },
-    resolve(path) {
-      return path.resolve(path)
     }
   }
 }

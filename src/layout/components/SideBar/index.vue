@@ -7,7 +7,7 @@
         :collapse-transition="false"
         :unique-opened="false"
       >
-        <SidebarItem v-for="item in routes" :key="item.path" :item="item" :basicPath="item.path"></SidebarItem>
+        <sidebar-item v-for="item in routes" :key="item.path" :item="item" :basicPath="item.path"></sidebar-item>
       </el-menu>
     </el-scrollbar>
   </section>

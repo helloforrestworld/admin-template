@@ -5,6 +5,7 @@ import store from './store/index'
 
 import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import 'nprogress/nprogress.css'
 import './styles/index.less'
 
 import './icons'
