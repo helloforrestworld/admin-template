@@ -11,7 +11,7 @@
 import { AppMain, Sidebar } from './components'
 
 export default {
-  name: 'layout',
+  name: 'Layout',
   components: { AppMain, Sidebar },
   props: {},
   data() {
@@ -34,7 +34,7 @@ export default {
     height: 100%;
   }
   .sidebar-container {
-    width: 210px;
+    width: 240px;
     height: 100%;
     transition: width 0.28s;
     position: absolute;
@@ -48,7 +48,7 @@ export default {
   }
   .main-container {
     height: 100%;
-    margin-left: 210px;
+    margin-left: 240px;
     overflow-y: auto;
   }
 }

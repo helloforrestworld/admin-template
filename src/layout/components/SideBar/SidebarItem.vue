@@ -1,19 +1,19 @@
 <template>
   <div class="menu-wrapper">
     <template v-if="!item.children || item.children.length === 0">
-      <router-link :to="basicPath">
+      <app-link :to="basicPath">
         <el-menu-item :index="basicPath">
           <TextItem :item="item"></TextItem>
         </el-menu-item>
-      </router-link>
+      </app-link>
     </template>
 
     <template v-else-if="item.children.length === 1 && !item.alwaysShowRoot">
-      <router-link :to="resolvePath(item.children[0].path)">
+      <app-link :to="resolvePath(item.children[0].path)">
         <el-menu-item :index="resolvePath(item.children[0].path)">
           <TextItem :item="item.children[0]"></TextItem>
         </el-menu-item>
-      </router-link>
+      </app-link>
     </template>
 
     <el-submenu v-else :index="resolvePath(item.path)">
@@ -34,10 +34,12 @@
 <script>
 import path from 'path'
 import TextItem from './TextItem'
+import AppLink from './AppLink'
+import { isExternal } from '@/helpers/utils'
 
 export default {
   name: 'SidebarItem',
-  components: { TextItem },
+  components: { TextItem, AppLink },
   props: {
     item: {
       type: Object,
@@ -57,6 +59,9 @@ export default {
   },
   methods: {
     resolvePath(routePath) {
+      if (isExternal(routePath)) {
+        return routePath
+      }
       return path.resolve(this.basicPath, routePath)
     }
   }

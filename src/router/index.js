@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import layout from '@/layout/index.vue'
+import Layout from '@/layout/index.vue'
 
 import nestedRouter from './modules/nested'
 import NProgress from 'nprogress'
@@ -11,7 +11,7 @@ export const constantRoutes = []
 export const asyncRoutes = [
   {
     path: '/',
-    component: layout,
+    component: Layout,
     redirect: '/home1',
     meta: {
       title: '导航一',
@@ -41,7 +41,7 @@ export const asyncRoutes = [
 
   {
     path: '/about',
-    component: layout,
+    component: Layout,
     redirect: '/about/index',
     children: [
       {
@@ -58,7 +58,7 @@ export const asyncRoutes = [
 
   {
     path: '/about1',
-    component: layout,
+    component: Layout,
     redirect: '/about1/index',
     alwaysShowRoot: true,
     meta: {
@@ -74,6 +74,17 @@ export const asyncRoutes = [
           title: 'ABOUT',
           icon: 'excel'
         }
+      }
+    ]
+  },
+
+  {
+    path: 'external-link',
+    component: Layout,
+    children: [
+      {
+        path: 'https://www.baidu.com',
+        meta: { 'title': '外链', 'icon': 'link' }
       }
     ]
   },
@@ -99,9 +110,8 @@ router.beforeEach((to, from, next) => {
   next()
 })
 
-router.afterEach((to, from, next) => {
+router.afterEach(() => {
   NProgress.done()
-  next()
 })
 
 export default router
