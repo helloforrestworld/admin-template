@@ -29,7 +29,10 @@ export default {
 <style lang="less" scoped>
 .app-main {
   box-sizing: border-box;
+  height: 100%;
+  position: relative;
   padding: 12px 20px;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 </style>

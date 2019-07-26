@@ -26,7 +26,6 @@ export default {
   },
   components: { SidebarItem },
   methods: {
-
   },
   computed: {
     routes() {

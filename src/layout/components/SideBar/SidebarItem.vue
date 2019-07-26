@@ -1,5 +1,5 @@
 <template>
-  <div class="menu-wrapper">
+  <div class="menu-wrapper" v-if="!item.hidden">
     <template v-if="!item.children || item.children.length === 0">
       <app-link :to="basicPath">
         <el-menu-item :index="basicPath">

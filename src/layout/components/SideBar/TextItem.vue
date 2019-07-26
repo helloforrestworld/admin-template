@@ -1,7 +1,7 @@
 <template>
   <div class="text-item">
     <svg-icon v-if="item.meta && item.meta.icon" :icon="item.meta.icon"></svg-icon>
-    {{item.meta.title}}
+    {{item.meta && item.meta.title}}
   </div>
 </template>
 
