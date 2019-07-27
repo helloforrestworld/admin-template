@@ -16,6 +16,11 @@ export const constantRoutes = [
     path: '/401',
     component: () => import('@/views/ErrorPage/401'),
     hidden: true
+  },
+  {
+    path: '/login',
+    component: () => import('@/views/Login/index'),
+    hidden: true
   }
 ]
 export const asyncRoutes = [

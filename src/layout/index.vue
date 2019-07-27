@@ -30,8 +30,12 @@ export default {
 #app {
   .app-wrapper {
     position: relative;
-    width: 100%;
-    height: 100%;
+    width: 1208px;
+    height: calc(100% - 60px);
+    position: relative;
+    margin: 30px auto;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
   }
   .sidebar-container {
     width: 240px;

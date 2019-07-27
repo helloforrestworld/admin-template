@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <div class="center-wrapper">
-      <router-view/>
-    </div>
+    <router-view/>
   </div>
 </template>
 
