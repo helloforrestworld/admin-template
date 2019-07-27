@@ -1,135 +1,34 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Layout from '@/layout/index.vue'
 
-import nestedRouter from './modules/nested'
+import homeRouter from './modules/home'
+import componentRouter from './modules/component'
 
 Vue.use(Router)
 
 export const constantRoutes = [
   {
     path: '/404',
-    component: () => import('@/views/ErrorPage/404'),
+    component: () => import('@/views/error-page/404'),
     hidden: true
   },
   {
     path: '/401',
-    component: () => import('@/views/ErrorPage/401'),
+    component: () => import('@/views/error-page/401'),
     hidden: true
   },
   {
     path: '/login',
-    component: () => import('@/views/Login/index'),
+    component: () => import('@/views/login/index'),
     hidden: true
   }
 ]
 export const asyncRoutes = [
-  {
-    path: '/',
-    component: Layout,
-    redirect: '/home1',
-    meta: {
-      title: '导航一',
-      icon: 'email'
-    },
-    children: [
-      {
-        path: 'home1',
-        component: () => import('@/views/Home/index'),
-        meta: {
-          title: 'HOME1',
-          icon: 'email'
-        }
-      },
-      {
-        path: 'home2',
-        component: () => import('@/views/Home/index'),
-        meta: {
-          title: 'HOME2',
-          icon: 'email'
-        }
-      }
-    ]
-  },
+  { path: '*', redirect: '/404', hidden: true },
 
-  {
-    path: '/about',
-    component: Layout,
-    redirect: '/about/index',
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/About/index'),
-        meta: {
-          title: 'ABOUT',
-          icon: 'excel'
-        }
-      }
-    ]
-  },
+  ...homeRouter,
 
-  {
-    path: '/about1',
-    component: Layout,
-    redirect: '/about1/index',
-    alwaysShowRoot: true,
-    meta: {
-      title: 'AlwaysShow',
-      icon: 'excel'
-    },
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/About/index'),
-        meta: {
-          title: 'ABOUT',
-          icon: 'excel'
-        }
-      }
-    ]
-  },
-
-  {
-    path: 'external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'https://www.baidu.com',
-        meta: { 'title': '外链', 'icon': 'link' }
-      }
-    ]
-  },
-
-  {
-    path: '/error',
-    component: Layout,
-    meta: {
-      title: 'Error Pages',
-      icon: '404'
-    },
-    children: [
-      {
-        path: '401',
-        component: () => import('@/views/ErrorPage/401'),
-        name: 'Page401',
-        meta: {
-          title: '401'
-        }
-      },
-      {
-        path: '404',
-        component: () => import('@/views/ErrorPage/404'),
-        name: 'Page404',
-        meta: {
-          title: '404'
-        }
-      }
-    ]
-  },
-
-  nestedRouter,
-
-  { path: '*', redirect: '/404', hidden: true }
+  ...componentRouter
 ]
 
 const createRouter = () => new Router({

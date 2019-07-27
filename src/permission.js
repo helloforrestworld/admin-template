@@ -3,24 +3,40 @@ import store from './store'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { getPageTitle } from '@/helpers/utils'
+import { getToken } from '@/helpers/auth'
 
 NProgress.configure({ showSpinner: true })
+
+const whiteList = ['/login', '/404', '/401']
 
 router.beforeEach(async(to, from, next) => {
   NProgress.start()
 
   document.title = getPageTitle(to.meta.title)
 
-  if (store.getters.roles.length === 0) {
-    const { roles } = await store.dispatch('user/getInfo')
+  const hasToken = getToken()
 
-    const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
+  if (hasToken) {
+    if (to.path === '/login') {
+      next({ path: '/' })
+    } else {
+      if (store.getters.roles.length === 0) {
+        const { roles } = await store.dispatch('user/getInfo')
 
-    router.addRoutes(accessRoutes)
+        const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
 
-    next({ ...to, replace: true })
+        router.addRoutes(accessRoutes)
+        next({ ...to, replace: true })
+      } else {
+        next()
+      }
+    }
   } else {
-    next()
+    if (whiteList.includes(to.path)) {
+      next()
+    } else {
+      next(`/login?redirect=${to.path}`)
+    }
   }
 })
 

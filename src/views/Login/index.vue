@@ -2,7 +2,7 @@
   <section class="login-page">
     <section class="login-logo">
       <div class="login-top">
-        <img src="./logo_login.png" alt="logo">
+        <img src="./images/logo_login.png" alt="logo">
         <span class="title">欢迎使用 移步到微企业办公管理平台</span>
       </div>
     </section>
@@ -65,6 +65,8 @@
 </template>
 
 <script>
+import { setToken } from '@/helpers/auth'
+
 export default {
   name: '',
   data() {
@@ -93,7 +95,10 @@ export default {
       this.loading = true
       setTimeout(() => {
         this.loading = false
-      }, 1000)
+        setToken('AUTH')
+        const redirect = this.$route.query.redirect || '/'
+        this.$router.push(redirect)
+      }, 300)
     }
   }
 }
@@ -104,11 +109,11 @@ export default {
   background: #fff;
   width: 100%;
   height: 100%;
-  background: url(./qy_main_bg.jpg)no-repeat 0 0;
+  background: url(./images/qy_main_bg.jpg)no-repeat 0 0;
   background-size: cover;
   .login-logo {
     height: 200px;
-    background: url(./qy_login_banner.jpg)no-repeat 0 0;
+    background: url(./images/qy_login_banner.jpg)no-repeat 0 0;
     background-size: cover;
     .login-top {
       text-align: center;

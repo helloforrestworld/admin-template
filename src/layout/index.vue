@@ -31,9 +31,9 @@ export default {
   .app-wrapper {
     position: relative;
     width: 1208px;
-    height: calc(100% - 60px);
+    height: calc(100% - 50px);
     position: relative;
-    margin: 30px auto;
+    margin: 20px auto 30px auto;
     background: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
   }
