@@ -29,7 +29,7 @@ export default {
   },
   computed: {
     routes() {
-      return this.$store.getters.asyncRoutes
+      return this.$store.getters.permission_routes
     },
     path() {
       return this.$route.path

@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Layout from '@/layout/index.vue'
 
 import nestedRouter from './modules/nested'
-import NProgress from 'nprogress'
 
 Vue.use(Router)
 
@@ -31,7 +30,6 @@ export const asyncRoutes = [
     children: [
       {
         path: 'home1',
-        name: 'Home',
         component: () => import('@/views/Home/index'),
         meta: {
           title: 'HOME1',
@@ -40,7 +38,6 @@ export const asyncRoutes = [
       },
       {
         path: 'home2',
-        name: 'Home',
         component: () => import('@/views/Home/index'),
         meta: {
           title: 'HOME2',
@@ -57,7 +54,6 @@ export const asyncRoutes = [
     children: [
       {
         path: 'index',
-        name: 'About',
         component: () => import('@/views/About/index'),
         meta: {
           title: 'ABOUT',
@@ -79,7 +75,6 @@ export const asyncRoutes = [
     children: [
       {
         path: 'index',
-        name: 'About',
         component: () => import('@/views/About/index'),
         meta: {
           title: 'ABOUT',
@@ -103,7 +98,6 @@ export const asyncRoutes = [
   {
     path: '/error',
     component: Layout,
-    name: 'ErrorPages',
     meta: {
       title: 'Error Pages',
       icon: '404'
@@ -135,7 +129,7 @@ export const asyncRoutes = [
 
 const createRouter = () => new Router({
   scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes.concat(asyncRoutes)
+  routes: constantRoutes
 })
 
 const router = createRouter()
@@ -145,14 +139,5 @@ export function resetRouter() {
   const newRouter = createRouter()
   router.matcher = newRouter.matcher
 }
-
-router.beforeEach((to, from, next) => {
-  NProgress.start()
-  next()
-})
-
-router.afterEach(() => {
-  NProgress.done()
-})
 
 export default router
