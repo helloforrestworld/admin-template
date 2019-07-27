@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import homeRouter from './modules/home'
-import componentRouter from './modules/component'
+export let routeModuleMap = {}
+const context = require.context('./modules', false, /\.js$/)
+context.keys().forEach(path => {
+  const key = path.replace(/\.\/(.*)\.js/, '$1')
+  routeModuleMap[key] = context(path).default
+})
 
 Vue.use(Router)
 
@@ -22,13 +26,6 @@ export const constantRoutes = [
     component: () => import('@/views/login/index'),
     hidden: true
   }
-]
-export const asyncRoutes = [
-  { path: '*', redirect: '/404', hidden: true },
-
-  ...homeRouter,
-
-  ...componentRouter
 ]
 
 const createRouter = () => new Router({

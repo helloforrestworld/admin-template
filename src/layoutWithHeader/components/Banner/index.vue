@@ -102,7 +102,7 @@ export default {
       .user-bg {
         width: 30px;
         height: 30px;
-        background: url(./images/qy_user.png)no-repeat 0 0;
+        background: url(./images/qy_user.png)no-repeat 0 2px;
         background-size: 46px;
         cursor: pointer;
       }

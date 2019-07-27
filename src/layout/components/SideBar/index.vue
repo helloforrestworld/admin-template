@@ -29,10 +29,14 @@ export default {
   },
   computed: {
     routes() {
-      return this.$store.getters.permission_routes
+      return this.$store.getters.permission_routes[this.routeModuleName]
     },
     path() {
       return this.$route.path
+    },
+    routeModuleName() {
+      const moduleName = this.path.match(/^\/([^/]*)/)
+      return moduleName && moduleName[1]
     }
   }
 }

@@ -1,27 +1,32 @@
-import { asyncRoutes, constantRoutes } from '@/router'
+import { routeModuleMap } from '@/router'
 
 const state = {
-  routes: [],
-  addRoutes: []
+  permissionRoutes: {}
 }
 
 const mutations = {
-  SET_ROUTES: (state, routes) => {
-    state.addRoutes = routes
-    state.routes = constantRoutes.concat(routes)
+  SET_ROUTES: (state, accessedRoutes) => {
+    state.permissionRoutes = accessedRoutes
   }
 }
 
 const actions = {
   generateRoutes({ commit }, roles) {
     return new Promise(resolve => {
-      let accessedRoutes
-      if (roles.includes('admin')) {
-        accessedRoutes = asyncRoutes || []
-      } else {
-        accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
-      }
+      let accessedRoutes = {}
+
+      Object.keys(routeModuleMap).forEach(moduleKey => {
+        let routes = routeModuleMap[moduleKey]
+
+        if (roles.includes('admin')) {
+          accessedRoutes[moduleKey] = routes || []
+        } else {
+          accessedRoutes[moduleKey] = filterAsyncRoutes(routes, roles)
+        }
+      })
+
       commit('SET_ROUTES', accessedRoutes)
+
       resolve(accessedRoutes)
     })
   }
@@ -42,6 +47,7 @@ function hasPermission(roles, route) {
   }
 }
 
+// 根据权限筛选路由
 export function filterAsyncRoutes(routes, roles) {
   const res = []
 
