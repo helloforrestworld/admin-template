@@ -6,7 +6,7 @@ const getPrefixRoute = function (path) {
   return MODULE_PREFIX + path
 }
 
-const componentRouter = [
+const routes = [
   {
     path: getPrefixRoute('/table'),
     component: LayoutWithHeader,
@@ -24,4 +24,4 @@ const componentRouter = [
   }
 ]
 
-export default componentRouter
+export default routes

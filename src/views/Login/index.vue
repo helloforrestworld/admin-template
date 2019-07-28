@@ -131,11 +131,13 @@ export default {
   }
 
   .login-main {
-    width: 280px;
+    width: 240px;
     max-width: 100%;
     margin: 20px auto;
     .svg-container {
-      color: #000;
+      color: #7f8785;
+      padding-left: 4px;
+      font-size: 16px;
     }
   }
 

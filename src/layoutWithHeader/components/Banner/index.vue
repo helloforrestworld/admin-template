@@ -118,6 +118,7 @@ export default {
 .banner-dropdown-menu {
   background: red;
   padding: 0 !important;
+  margin-top: 20px !important;
   .banner-logout-row {
     &:hover {
       background: #fff !important;
@@ -137,7 +138,7 @@ export default {
   .el-dropdown-menu__item {
     height: 46px!important;
     line-height: 46px!important;
-    min-width: 120px !important;
+    min-width: 140px !important;
     border-bottom: 1px solid #ececec;
     font-size: 14px;
     color: #000;

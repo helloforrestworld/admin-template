@@ -8,7 +8,7 @@ const getPrefixRoute = function (path) {
   return MODULE_PREFIX + path
 }
 
-const homeRouter = [
+const routes = [
   {
     path: '/',
     component: LayoutWithHeader,
@@ -125,4 +125,4 @@ const homeRouter = [
   }
 ]
 
-export default homeRouter
+export default routes
