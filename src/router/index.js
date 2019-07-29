@@ -1,12 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import BasicLayout from '@/layout/BasicLayout'
+
 export let routeModuleMap = {}
 const context = require.context('./modules', false, /\.js$/)
 context.keys().forEach(path => {
   const key = path.replace(/\.\/(.*)\.js/, '$1')
   routeModuleMap[key] = context(path).default
 })
+console.log('routeModuleMap: ', routeModuleMap)
 
 Vue.use(Router)
 
@@ -25,6 +28,17 @@ export const constantRoutes = [
     path: '/login',
     component: () => import('@/views/login/index'),
     hidden: true
+  },
+  {
+    path: '/basic',
+    component: BasicLayout,
+    redirect: '/basic/index',
+    children: [
+      {
+        path: '/basic/index',
+        component: () => import('@/views/basic/index')
+      }
+    ]
   }
 ]
 
