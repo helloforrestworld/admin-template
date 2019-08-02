@@ -39,6 +39,10 @@ export const constantRoutes = [
         component: () => import('@/views/basic/index')
       }
     ]
+  },
+  {
+    path: '/',
+    redirect: '/home'
   }
 ]
 

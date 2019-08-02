@@ -46,8 +46,7 @@ export default {
       activeIndex: '1',
       routerLink: [
         { path: '/home', label: '首页' },
-        { path: '/menu-layout', label: '组件' },
-        { path: '/home2', label: '首页2' }
+        { path: '/other', label: '其它' }
       ]
     }
   },

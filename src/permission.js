@@ -26,7 +26,6 @@ router.beforeEach(async(to, from, next) => {
         const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
 
         Object.keys(accessRoutes).forEach(key => {
-          console.log('accessRoutes[key]: ', accessRoutes[key])
           router.addRoutes(accessRoutes[key])
         })
 

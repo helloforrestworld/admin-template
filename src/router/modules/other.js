@@ -1,21 +1,13 @@
 import MenuLayout from '@/layout/MenuLayout'
 
-const MODULE_PREFIX = '/menu-layout'
-
-const getPrefixRoute = function (path) {
-  return MODULE_PREFIX + path
-}
-
-console.log(getPrefixRoute)
-
 const routes = [
   {
-    path: '/menu-layout',
+    path: '/other',
     component: MenuLayout,
-    redirect: '/menu-layout/table',
+    redirect: '/other/table',
     children: [
       {
-        path: '/menu-layout/table',
+        path: 'table',
         component: () => import('@/views/table/index'),
         meta: {
           title: '表格',

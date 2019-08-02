@@ -1,21 +1,13 @@
-
-// import Layout from '@/layout/index.vue'
-import LayoutWithHeader from '@/layoutWithHeader/index.vue'
-
-const MODULE_PREFIX = '/home'
-
-const getPrefixRoute = function (path) {
-  return MODULE_PREFIX + path
-}
+import MenuLayout from '@/layout/MenuLayout'
 
 const routes = [
   {
-    path: '/',
-    component: LayoutWithHeader,
-    redirect: '/home',
+    path: '/home',
+    component: MenuLayout,
+    redirect: '/home/index',
     children: [
       {
-        path: 'home',
+        path: 'index',
         component: () => import('@/views/home/index'),
         meta: {
           title: 'Home',
@@ -24,11 +16,10 @@ const routes = [
       }
     ]
   },
-
   {
-    path: getPrefixRoute('/nested'),
-    component: LayoutWithHeader,
-    redirect: 'menu1/menu1-1',
+    path: '/home/nested',
+    component: MenuLayout,
+    redirect: '/home/nested/menu1/menu1-1',
     name: 'Nested',
     meta: {
       title: 'Nested Routes',
@@ -85,10 +76,9 @@ const routes = [
       }
     ]
   },
-
   {
-    path: getPrefixRoute('/error'),
-    component: LayoutWithHeader,
+    path: '/home/error',
+    component: MenuLayout,
     meta: {
       title: 'Error Pages',
       icon: '404'
@@ -114,8 +104,8 @@ const routes = [
   },
 
   {
-    path: '/external-link',
-    component: LayoutWithHeader,
+    path: '/home/external-link',
+    component: MenuLayout,
     children: [
       {
         path: 'https://www.baidu.com',
