@@ -10,7 +10,7 @@ const routes = [
         path: 'table',
         component: () => import('@/views/table/index'),
         meta: {
-          title: '表格',
+          title: '业务表格',
           icon: 'component'
         }
       }

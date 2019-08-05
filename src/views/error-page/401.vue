@@ -52,7 +52,7 @@ export default {
     height: 100%;
     box-sizing: border-box;
     .errPage-left {
-      margin-right: 20px;
+      margin-right: 100px;
     }
     .pan-gif {
       margin: 0 auto;
