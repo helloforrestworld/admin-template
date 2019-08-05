@@ -2,8 +2,10 @@
   <section class="menu-layout">
     <basic-layout>
       <div class="flex-wrap">
-        <side-bar :routes="routes"></side-bar>
-        <router-view/>
+        <side-bar class="left-menu" :routes="routes"></side-bar>
+        <section class="right-container">
+          <router-view/>
+        </section>
       </div>
     </basic-layout>
   </section>
@@ -43,6 +45,11 @@ export default {
   .flex-wrap {
     display: flex;
     height: 100%;
+    .right-container {
+      position: relative;
+      flex: 1;
+      padding: 20px;
+    }
   }
 }
 </style>

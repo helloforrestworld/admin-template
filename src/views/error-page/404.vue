@@ -40,14 +40,16 @@ export default {
 <style lang="less" scoped>
 .wscn-http404-container{
   width: 100%;
-  transform: translate(-50%,-50%);
-  position: absolute;
-  top: 40%;
-  left: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
 }
 .wscn-http404 {
   position: relative;
   width: 100%;
+  transform: translateY(-10%);
   box-sizing: border-box;
   padding: 0 50px;
   overflow: hidden;

@@ -1,36 +1,27 @@
 <template>
   <div class="errPage-container">
-    <el-button icon="arrow-left" class="pan-back-btn" @click="back">
-      返回
-    </el-button>
-    <el-row>
-      <el-col :span="12">
-        <h1 class="text-jumbo text-ginormous">
-          Oops!
-        </h1>
-        gif来源<a href="https://zh.airbnb.com/" target="_blank">airbnb</a> 页面
-        <h2>你没有权限去该页面</h2>
-        <h6>如有不满请联系你领导</h6>
-        <ul class="list-unstyled">
-          <li>或者你可以去:</li>
-          <li class="link-type">
-            <router-link to="/dashboard">
-              回首页
-            </router-link>
-          </li>
-          <li class="link-type">
-            <a href="https://www.taobao.com/">随便看看</a>
-          </li>
-          <li><a href="#" @click.prevent="dialogVisible=true">点我看图</a></li>
-        </ul>
-      </el-col>
-      <el-col :span="12">
-        <img :src="errGif" width="313" height="428" alt="Girl has dropped her ice cream.">
-      </el-col>
-    </el-row>
-    <el-dialog :visible.sync="dialogVisible" title="随便看">
-      <img :src="ewizardClap" class="pan-img">
-    </el-dialog>
+    <div class="errPage-left">
+      <h1 class="text-jumbo">
+        Oops!
+      </h1>
+      gif来源<a href="https://zh.airbnb.com/" target="_blank">airbnb</a> 页面
+      <h2>你没有权限去该页面</h2>
+      <h6>如有不满请联系你领导</h6>
+      <ul class="list-unstyled">
+        <li>或者你可以去:</li>
+        <li class="link-type">
+          <router-link to="/">
+            回首页
+          </router-link>
+        </li>
+        <li class="link-type">
+          <a href="https://www.taobao.com/">随便看看</a>
+        </li>
+      </ul>
+    </div>
+    <div class="errPage-right">
+      <img class="error-gif" :src="errGif" width="313" height="428" alt="Girl has dropped her ice cream.">
+    </div>
   </div>
 </template>
 
@@ -42,33 +33,26 @@ export default {
   data() {
     return {
       errGif: errGif + '?' + +new Date(),
-      ewizardClap: 'https://wpimg.wallstcn.com/007ef517-bafd-4066-aae4-6883632d9646',
-      dialogVisible: false
+      ewizardClap: 'https://wpimg.wallstcn.com/007ef517-bafd-4066-aae4-6883632d9646'
     }
   },
   methods: {
-    back() {
-      if (this.$route.query.noGoBack) {
-        this.$router.push({ path: '/dashboard' })
-      } else {
-        this.$router.go(-1)
-      }
-    }
   }
 }
 </script>
 
 <style lang="less" scoped>
   .errPage-container {
-    width: 80%;
-    transform: translate(-50%,-50%);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    .pan-back-btn {
-      background: #008489;
-      color: #fff;
-      border: none!important;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    box-sizing: border-box;
+    .errPage-left {
+      margin-right: 20px;
     }
     .pan-gif {
       margin: 0 auto;
@@ -80,7 +64,8 @@ export default {
       width: 100%;
     }
     .text-jumbo {
-      font-size: 60px;
+      font-size: 49px;
+      margin: 30px 0;
       font-weight: 700;
       color: #484848;
     }
