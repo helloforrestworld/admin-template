@@ -3,7 +3,7 @@
     <h2 class="title">客户管理</h2>
     <section class="controler">
       <div class="controler-left">
-        <el-button @click="resetDateFilter" type="primary">新建客户</el-button>
+        <el-button type="primary" @click="$router.push('/other/table/modify')">新建客户</el-button>
         <el-button @click="clearFilter">导入</el-button>
         <el-button @click="clearFilter">导出</el-button>
       </div>

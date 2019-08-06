@@ -1,13 +1,12 @@
 <template>
-  <section class="test">
-    test
-    test
+  <section class="table-modify">
+    新建/修改
   </section>
 </template>
 
 <script>
 export default {
-  name: '',
+  name: 'TableModify',
   data() {
     return {
 

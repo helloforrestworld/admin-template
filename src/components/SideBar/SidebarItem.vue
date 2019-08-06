@@ -13,6 +13,21 @@
         <el-menu-item :index="resolvePath(item.children[0].path)">
           <TextItem :item="item.children[0]"></TextItem>
         </el-menu-item>
+
+        <!-- <el-menu-item :index="resolvePath(item.children[0].path)">
+          <el-submenu v-if="item.children[0].children" :index="resolvePath(item.children[0].path)">
+            <template slot="title">
+              <TextItem :item="item.children[0]"></TextItem>
+            </template>
+            <sidebar-item
+              v-for="child in item.children[0].children"
+              :key="child.path"
+              :item="child"
+              :basicPath="resolvePath(child.path)"
+            />
+          </el-submenu>
+          <TextItem v-else :item="item.children[0]"></TextItem>
+        </el-menu-item> -->
       </app-link>
     </template>
 
