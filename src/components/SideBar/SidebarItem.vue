@@ -1,42 +1,19 @@
 <template>
-  <div class="menu-wrapper" v-if="!item.hidden">
-    <template v-if="!item.children || item.children.length === 0">
-      <app-link :to="basicPath">
-        <el-menu-item :index="basicPath">
-          <TextItem :item="item"></TextItem>
+  <div class="menu-wrapper" v-if="!isHidden">
+    <template v-if="!renderItem.children || renderItem.children.length === 0">
+      <app-link :to="renderBasicPath">
+        <el-menu-item :index="renderBasicPath">
+          <TextItem :item="renderItem"></TextItem>
         </el-menu-item>
       </app-link>
     </template>
 
-    <template v-else-if="item.children.length === 1 && !item.alwaysShowRoot">
-      <app-link :to="resolvePath(item.children[0].path)">
-        <el-menu-item :index="resolvePath(item.children[0].path)">
-          <TextItem :item="item.children[0]"></TextItem>
-        </el-menu-item>
-
-        <!-- <el-menu-item :index="resolvePath(item.children[0].path)">
-          <el-submenu v-if="item.children[0].children" :index="resolvePath(item.children[0].path)">
-            <template slot="title">
-              <TextItem :item="item.children[0]"></TextItem>
-            </template>
-            <sidebar-item
-              v-for="child in item.children[0].children"
-              :key="child.path"
-              :item="child"
-              :basicPath="resolvePath(child.path)"
-            />
-          </el-submenu>
-          <TextItem v-else :item="item.children[0]"></TextItem>
-        </el-menu-item> -->
-      </app-link>
-    </template>
-
-    <el-submenu v-else :index="resolvePath(item.path)">
+    <el-submenu v-else :index="resolvePath(renderItem.path)">
       <template slot="title">
-        <TextItem :item="item"></TextItem>
+        <TextItem :item="renderItem"></TextItem>
       </template>
       <sidebar-item
-        v-for="child in item.children"
+        v-for="child in renderItem.children"
         :key="child.path"
         :item="child"
         :basicPath="resolvePath(child.path)"
@@ -67,17 +44,47 @@ export default {
   },
   data() {
     return {
-
+      defaultPath: ''
     }
   },
   created() {
   },
+
+  computed: {
+    children() {
+      let children = this.item.children
+      if (!children || this.item.children.length === 0) {
+        return []
+      }
+      children = children.filter(child => {
+        return !child.hidden
+      })
+      return children
+    },
+    renderItem() {
+      let item = this.item
+      if (!item.alwaysShowRoot && this.children.length === 1) {
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+        this.defaultPath = this.resolvePath(this.children[0].path)
+        return { ...this.children[0], path: this.resolvePath(this.children[0].path) }
+      } else {
+        return item
+      }
+    },
+    renderBasicPath() {
+      return this.defaultPath || this.basicPath
+    },
+    isHidden() {
+      return this.item.hidden
+    }
+  },
+
   methods: {
     resolvePath(routePath) {
       if (isExternal(routePath)) {
         return routePath
       }
-      return path.resolve(this.basicPath, routePath)
+      return path.resolve(this.renderBasicPath, routePath)
     }
   }
 }

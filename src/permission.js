@@ -29,7 +29,7 @@ router.beforeEach(async(to, from, next) => {
           router.addRoutes(accessRoutes[key])
         })
 
-        router.addRoutes([{ path: '*', redirect: '/404', hidden: true }])
+        // router.addRoutes([{ path: '*', redirect: '/404', hidden: true }])
 
         next({ ...to, replace: true })
       } else {
